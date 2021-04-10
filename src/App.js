@@ -19,7 +19,30 @@ function App() {
     resetClearScreen,
     saveMark,
     calculation,
+    memoryClear,
+    memoryRecall,
+    memoryStore,
+    mPlus,
+    mMinus,
+    memory,
   } = useProductsContext();
+  const memoryActions = (e) => {
+    if (e.target.dataset.id === "MC") {
+      memoryClear();
+    }
+    if (e.target.dataset.id === "MR") {
+      memoryRecall();
+    }
+    if (e.target.dataset.id === "MS") {
+      memoryStore();
+    }
+    if (e.target.dataset.id === "M+") {
+      mPlus();
+    }
+    if (e.target.dataset.id === "M-") {
+      mMinus();
+    }
+  };
   const clickNumber = (id) => {
     changeNumber(id);
     resetClearScreen();
@@ -47,7 +70,9 @@ function App() {
   return (
     <div className='calculator-container'>
       <div className='screen'>
-        <div id='m'>M</div>
+        <div id='m' className={memory === 0 ? "m-hide" : null}>
+          M
+        </div>
         <input
           type='number'
           className='input-screen'
@@ -57,7 +82,11 @@ function App() {
       <div className='memory-container'>
         {Memory.map((item) => {
           return (
-            <button id={item} className='item memory-item'>
+            <button
+              data-id={item}
+              className='item memory-item'
+              onClick={memoryActions}
+            >
               {item}
             </button>
           );

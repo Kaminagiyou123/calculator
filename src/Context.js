@@ -1,6 +1,7 @@
 import React, { useContext, useReducer } from "react";
 import reducer from "./reducer";
 const initialState = {
+  memory: 0,
   memoNumber: 0,
   screenNumber: 0,
   screenArray: [],
@@ -48,11 +49,32 @@ export const ProductsProvider = ({ children }) => {
   const calculation = () => {
     dispatch({ type: "CALCULATION" });
   };
+  // memory buttons
+  const memoryClear = () => {
+    dispatch({ type: "MC" });
+  };
+  const memoryRecall = () => {
+    dispatch({ type: "MR" });
+  };
+  const memoryStore = () => {
+    dispatch({ type: "MS" });
+  };
+  const mPlus = () => {
+    dispatch({ type: "M_PLUS" });
+  };
+  const mMinus = () => {
+    dispatch({ type: "M_MINUS" });
+  };
 
   return (
     <ProductsContext.Provider
       value={{
         ...state,
+        memoryClear,
+        memoryRecall,
+        memoryStore,
+        mPlus,
+        mMinus,
         changeNumber,
         flipNumber,
         pai,

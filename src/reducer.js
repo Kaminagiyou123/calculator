@@ -97,6 +97,24 @@ const reducer = (state, action) => {
       screenArray: [],
     };
   }
+
+  if (action.type === "MC") {
+    return { ...state, memory: 0 };
+  }
+  if (action.type === "MR") {
+    return { ...state, screenNumber: state.memory };
+  }
+  if (action.type === "MS") {
+    return { ...state, memory: state.screenNumber };
+  }
+  if (action.type === "M_PLUS") {
+    let newMemory = state.memory + state.screenNumber;
+    return { ...state, memory: newMemory };
+  }
+  if (action.type === "M_MINUS") {
+    let newMemory = state.memory - state.screenNumber;
+    return { ...state, memory: newMemory };
+  }
   throw new Error(`No Matching "${action.type}" - action type`);
 };
 
